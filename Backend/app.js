@@ -4,7 +4,8 @@ const exp = require('express');
 const mongo = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const userRoute = require('./routes/user');
+const userRoute = require('./routes/userRoute');
+const error = require('./middlewares/errorMiddleware');
 
 
 dotenv.config();
@@ -23,6 +24,9 @@ app.use("/api/users", userRoute);
 app.get("/", function(req, res) {
     res.send("Home Page");
 });
+
+// error middleware
+app.use(error);
 
 const PORT_NO = process.env.PORT || 3000
 

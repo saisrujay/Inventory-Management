@@ -6,7 +6,7 @@ const regex =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 //creating the schema for the user object
-const usrschema = mongo.Schema(
+const userschema = mongo.Schema(
     {
         name : {
             type : String,
@@ -24,7 +24,7 @@ const usrschema = mongo.Schema(
         password : {
             type : String,
             required : [true, "Password is required"],
-            minLength : [10,"Must contain at least 7 characters"],
+            minLength : [7,"Must contain at least 7 characters"],
         },
         photo : {
             type : String,
@@ -46,5 +46,5 @@ const usrschema = mongo.Schema(
     }
 );
 
-const user = mongo.model('user',user);
-module.exports = user;
+const User = mongo.model('User',userschema);
+module.exports = User;
