@@ -1,6 +1,6 @@
 //importing the modules
 const mongo = require('mongoose');
-
+const bcrypt = require('bcryptjs');
 
 const regex =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -45,6 +45,19 @@ const userschema = mongo.Schema(
         timestamps : true
     }
 );
+
+ //Encrypt the password before saving to the database
+userschema.pre("save", async function(next){
+    if(!this.isModified("password")){
+        return next();
+    }
+
+    //Hash the password
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
+    next();
+})
 
 const User = mongo.model('User',userschema);
 module.exports = User;
