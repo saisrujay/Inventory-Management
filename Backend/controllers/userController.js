@@ -60,8 +60,7 @@ const registerUser = asyncHandler(
             throw new Error("Invalid user data");
         }
 
-    }
-);
+});
 
 //Login User
 const loginUser = asyncHandler(
@@ -112,8 +111,7 @@ const loginUser = asyncHandler(
             throw new Error("Invalid email or password");
         }
 
-    }
-);
+});
 
 //Logout user
 const logout = asyncHandler(
@@ -126,9 +124,7 @@ const logout = asyncHandler(
             secure : true,
         });
         return res.status(200).json({message: "Successfully logged out"});
-
-    }
-);
+});
 
 //Get User Data
 const getUser = asyncHandler(
@@ -146,10 +142,8 @@ const getUser = asyncHandler(
         else {
             res.status(400);
             throw new Error("User not found");
-        }
-
     }
-);
+});
 
 //Get login status
 const loginStatus = asyncHandler(async (req, res) =>{
@@ -193,13 +187,39 @@ const updateUser = asyncHandler (async (req, res) =>{
     else {
         res.status(404)
         throw new Error("User not found")
-
     }   
 });
 
 //Changing Password
 const changePassword = asyncHandler(async (req, res) => {
-    res.send("Change Password");
+    const user = await User.findById(req.user._id);
+    const {oldPassword, password} = req.body;
+
+    if(!user){
+        res.status(404)
+        throw new Error("User not found, please sign up");
+    }
+
+    if(!oldPassword || !password){
+        res.status(400);
+        throw new Error("Please add old and new password");
+    }
+    
+    //Check if old password matches with password in DB
+    const passwordIsCorrect = await bcrypt.compare(oldPassword,user.password)
+
+    //Save new password if matches
+    if(user && passwordIsCorrect){
+        user.password = password;
+        await user.save()
+        res.status(200).send("Password changed successfully");
+    }
+
+});
+
+//Forgot password
+const forgotPassword = asyncHandler(async (req, res) => {
+    res.send("Forgot password");
 });
 
 module.exports = {
@@ -210,4 +230,5 @@ module.exports = {
     loginStatus,
     updateUser,
     changePassword, 
+    forgotPassword
 };
