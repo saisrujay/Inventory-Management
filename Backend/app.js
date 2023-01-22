@@ -5,8 +5,10 @@ const mongo = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute');
+const productRoute = require('./routes/productRoute');
 const error = require('./middlewares/errorMiddleware');
 const cookieParser = require('cookie-parser');
+const path = require("path");
 
 dotenv.config();
 
@@ -18,8 +20,11 @@ app.use(cookieParser());
 app.use(exp.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use("/uploads",exp.static(path.join(__dirname,"uploads")));
+
 //Routes Middleware
 app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 // routing
 app.get("/", function(req, res) {
