@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(exp.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use("/uploads",exp.static(path.join(__dirname,"uploads")));
+app.use("/uploads", exp.static(path.join(__dirname,"uploads")));
 
 //Routes Middleware
 app.use("/api/users", userRoute);
