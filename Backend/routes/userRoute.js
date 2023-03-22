@@ -1,7 +1,7 @@
 const exp =  require('express');
 const router = exp.Router();
 
-const { registerUser, loginUser, logout, getUser, loginStatus, updateUser, changePassword, forgotPassword } = require("../controllers/userController");
+const { registerUser, loginUser, logout, getUser, loginStatus, updateUser, changePassword, forgotPassword, resetPassword} = require("../controllers/userController");
 const { protect } = require("../middlewares/authMiddleware");
 
 router.post('/register', registerUser);
@@ -12,5 +12,6 @@ router.get('/loggedin', loginStatus);
 router.patch("/updateuser", protect, updateUser);
 router.patch("/changepassword",protect,changePassword);
 router.post('/forgotpassword', forgotPassword);
+router.put("/resetpassword/:resetToken", resetPassword);
 
 module.exports = router;
