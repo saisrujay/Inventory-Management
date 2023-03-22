@@ -20,6 +20,12 @@ app.use(exp.json());
 app.use(cookieParser());
 app.use(exp.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "https://pinvent-app.vercel.app"],
+        credentials: true,
+      })
+)
 
 app.use("/uploads", exp.static(path.join(__dirname,"uploads")));
 
@@ -36,7 +42,7 @@ app.get("/", function(req, res) {
 // error middleware
 app.use(error);
 
-const PORT_NO = process.env.PORT || 3000
+const PORT_NO = process.env.PORT || 5000
 
 //connecting to database and starting the server
 
