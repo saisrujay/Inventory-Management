@@ -10,6 +10,13 @@ import {
   FILTER_PRODUCTS,
   selectFilteredPoducts,
 } from "../../../redux/features/product/filterSlice";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import {
+  deleteProduct,
+  getProducts,
+} from "../../../redux/features/product/productSlice";
+import { Link } from "react-router-dom";
 
 const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
@@ -22,6 +29,28 @@ const ProductList = ({ products, isLoading }) => {
       return shortenedText;
     }
     return text;
+  };
+  const delProduct = async (id) => {
+    console.log(id);
+    await dispatch(deleteProduct(id));
+    await dispatch(getProducts());
+  };
+
+  const confirmDelete = (id) => {
+    confirmAlert({
+      title: "Delete Product",
+      message: "Are you sure you want to delete this product.",
+      buttons: [
+        {
+          label: "Delete",
+          onClick: () => delProduct(id),
+        },
+        {
+          label: "Cancel",
+          // onClick: () => alert('Click No')
+        },
+      ],
+    });
   };
 
   //   Begin Pagination
@@ -100,9 +129,9 @@ const ProductList = ({ products, isLoading }) => {
                       </td>
                       <td className="icons">
                         <span>
-                          
+                          <Link to={`/product-detail/${_id}`}>
                             <AiOutlineEye size={25} color={"purple"} />
-                          
+                          </Link>
                         </span>
                         <span>
                          
@@ -113,6 +142,7 @@ const ProductList = ({ products, isLoading }) => {
                           <FaTrashAlt
                             size={20}
                             color={"red"}
+                            onClick={() => confirmDelete(_id)}
                           />
                         </span>
                       </td>
