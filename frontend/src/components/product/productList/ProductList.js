@@ -92,11 +92,11 @@ const ProductList = ({ products, isLoading }) => {
                       <td>{shortenText(name, 16)}</td>
                       <td>{category}</td>
                       <td>
-                        10
+                        100
                       </td>
                       <td>{quantity}</td>
                       <td>
-                        {10*quantity}
+                        {100*quantity}
                       </td>
                       <td className="icons">
                         <span>
