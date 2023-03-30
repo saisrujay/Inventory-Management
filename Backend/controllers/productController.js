@@ -7,9 +7,9 @@ const createProduct = asyncHandler(
         const {name,sku,category,quantity,price,description } = req.body;
         
         //validation.
-        if(!name || !category || !quantity || !price || !description) {
+        if(!name || !category || !quantity || !price || !description){
             res.status(404);
-            throw new Error("All the fields are required");
+            throw new Error("All fields are required");
         }
 
         cloudinary.config({

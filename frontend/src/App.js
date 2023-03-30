@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home/Home";
 import Register from "./pages/auth/Register";
@@ -8,12 +8,13 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/dashboard/Dashboard";
 import axios from "axios";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { SET_LOGIN } from "./redux/features/auth/authSilce";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLoginStatus } from "./services/authService";
+import AddProduct from "./pages/addProduct/AddProduct";
 
 axios.defaults.withCredentials = true;
 
@@ -30,18 +31,26 @@ function App() {
 
   return (
     <BrowserRouter>
-    <ToastContainer />
+      <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />}/>
-        <Route path="/forgot" element={<Forgot />}/>
-        <Route path="/resetpassword/:resetToken" element={<Reset />}/>
-      
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path="/resetpassword/:resetToken" element={<Reset />} />
+
         <Route path="/dashboard" element={
           <Sidebar>
             <Layout>
               <Dashboard />
+            </Layout>
+          </Sidebar>
+        } />
+
+        <Route path="/add-product" element={
+          <Sidebar>
+            <Layout>
+              <AddProduct />
             </Layout>
           </Sidebar>
         } />
