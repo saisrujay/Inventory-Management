@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 // security measure implemented by web browsers to protect users from unauthorized cross-origin requests.
 app.use(
     cors({   // // Allow requests from this origin
-        origin: ["http://localhost:3000", "https://pinvent-app.vercel.app"],
+        origin: ["http://localhost:3000", "https://stack-flow.vercel.app"],
         credentials: true,
       })
 )
