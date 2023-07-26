@@ -11,7 +11,7 @@ const createProduct = asyncHandler(
             res.status(404);
             throw new Error("All fields are required");
         }
-
+        // By calling cloudinary.config() and passing an object with the appropriate credentials, you configure the Cloudinary library to use your specific Cloudinary account.
         cloudinary.config({
             cloud_name: process.env.CLOUD_NAME,
             api_key: process.env.API_KEY,
@@ -23,6 +23,7 @@ const createProduct = asyncHandler(
             // Save image in cloudinary
             let uploadedFile;
             try {
+                // cloudinary.uploader.upload: This is a method provided by the cloudinary library for uploading files to Cloudinary. It takes two main arguments: the file path (req.file.path) and an options object.
                 uploadedFile = await cloudinary.uploader.upload(
                     req.file.path,
                     {
@@ -44,6 +45,7 @@ const createProduct = asyncHandler(
 
         //Creating Product
         const product = await Product.create({
+            //because it is protect route, has access to req.user.
             user : req.user.id,
             name,
             sku,
@@ -153,10 +155,13 @@ const updateProduct = asyncHandler(async (req, res) =>{
             quantity,
             price,
             description,
+            // This checks if the fileData object is empty by checking if the length of its keys is equal to 0
             image: Object.keys(fileData).length === 0 ? product?.image : fileData,     //if image not updated, pass the prev image.
         },
         {
+            // new: true: When set to true, this option instructs Mongoose to return the modified document after the update operation is completed.
             new: true,
+            // runValidators: true: By default, Mongoose does not run any validators on update operations. However, setting runValidators: true allows the update operation to trigger validation checks defined in the schema for the model. 
             runValidators: true,
         }
 

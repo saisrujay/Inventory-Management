@@ -3,7 +3,6 @@
 }
 main {
   width: 100%;
-  // padding: 20px;
   color: #ccc;
 }
 .sidebar {
@@ -28,9 +27,16 @@ main {
   background-color: var(--dark-blue);
   height: 70px;
 }
-.logo {
+.logo-icon {
   font-size: 30px;
   color: var(--color-white);
+  //display: flex;
+  //align-items: center;
+}
+.logo-text {
+  font-size: 1.5rem;
+  color: var(--color-white);  
+  //margin-left: 0.5rem; 
 }
 .bars {
   display: flex;

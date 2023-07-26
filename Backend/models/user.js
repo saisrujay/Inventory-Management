@@ -35,7 +35,7 @@ const userschema = mongo.Schema(
             type : String,
             default : "+91"
         },
-        about : {
+        bio : {
             type : String,
             maxLength : [300, "Must not contain more than 300 characters"],
             default : "ABOUT ME"
@@ -47,17 +47,25 @@ const userschema = mongo.Schema(
 );
 
  //Encrypt the password before saving to the database
+// This line registers a middleware function to be executed before the 
+// save event of a user document. 
+// The save event is triggered when a document is about to be saved to the database.
+
 userschema.pre("save", async function(next){
     if(!this.isModified("password")){
         return next();
     }
 
     //Hash the password
+    //  A salt is a random value used in 
+    // password hashing to add complexity and make the hashed password more secure.
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(this.password, salt);
     this.password = hashedPassword;
+    // This calls the next() function to proceed to the next middleware or the actual save operation after the password has been hashed and assigned
     next();
 })
+// Note: It's important to have the next() function called at the end of the middleware to allow the execution flow to continue.
 
 const User = mongo.model('User',userschema);
 module.exports = User;

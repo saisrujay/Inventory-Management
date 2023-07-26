@@ -10,6 +10,7 @@ const productSchema = mongoose.Schema(
         name : {
             type : String,
             required : [true,"Name is required"],
+            // This option trims any leading or trailing whitespace from the value of the name
             trim : true 
         },
         sku : {
@@ -28,6 +29,11 @@ const productSchema = mongoose.Schema(
             required : [true,"Quantity is required"],
             trim : true 
         },
+        price: {
+            type: String,
+            required: [true, "Please add a price"],
+            trim: true,
+          },
         description : {
             type : String,
             required : [true,"Description is required"],

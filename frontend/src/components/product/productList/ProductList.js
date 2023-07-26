@@ -31,7 +31,7 @@ const ProductList = ({ products, isLoading }) => {
     return text;
   };
   const delProduct = async (id) => {
-    console.log(id);
+    // console.log(id);
     await dispatch(deleteProduct(id));
     await dispatch(getProducts());
   };
@@ -121,11 +121,11 @@ const ProductList = ({ products, isLoading }) => {
                       <td>{shortenText(name, 16)}</td>
                       <td>{category}</td>
                       <td>
-                        100
+                        {price}
                       </td>
                       <td>{quantity}</td>
                       <td>
-                        {100*quantity}
+                        {price*quantity}
                       </td>
                       <td className="icons">
                         <span>

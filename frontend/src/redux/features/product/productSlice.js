@@ -118,7 +118,7 @@ const productSlice = createSlice({
       const array = [];
       products.map((item) => {
         const { price, quantity } = item;
-        const productValue = 100 * quantity;
+        const productValue = price * quantity;
         return array.push(productValue);
       },);
       const totalValue = array.reduce((a, b) => {
@@ -164,7 +164,7 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(action.payload);
+      // console.log(action.payload);
       state.products.push(action.payload);
       toast.success("Product added successfully");
     })
@@ -181,7 +181,7 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(action.payload);
+      // console.log(action.payload);
       state.products = action.payload;
     })
     .addCase(getProducts.rejected, (state, action) => {

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { selectName, SET_LOGIN } from "../../redux/features/auth/authSilce";
 import { logoutUser } from "../../services/authService";
 
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ const Header = () => {
           <span className="--fw-thin">Welcome, </span>
           <span className="--color-danger">{name}</span>
         </h3>
-        <button onClick={logout} className="--btn --btn-danger">
+
+        <button onClick={logout} className="--btn --btn-primary">
           Logout
         </button>
       </div>

@@ -1,22 +1,25 @@
 import React from "react";
-//import {SiSparkar} from "react-icons/si";
-import { RiProductHuntLine } from "react-icons/ri";
-import Img from "../../assets/inv-img.png";
+import { BsStripe } from "react-icons/bs";
+import Img1 from "../../assets/OIG.jpeg";
 import { Link } from "react-router-dom";
 import "./Home.scss";
+
 import { ShowOnLogin, ShowOnLogout } from "../../components/protect/HiddenLink";
 
 const Home = () => {
     return (
         <div className="home">
             <nav className="container --flex-between">
-                <div className="logo">
-                    <RiProductHuntLine size={35} />
+                <div className="logo" style={{ color: '#145ca8' }}>
+                    <BsStripe size={30} />
+                    <span className="text">StockFlow</span> 
                 </div>
                 <ul className="home-links">
                     <ShowOnLogout>
                     <li>
-                        <Link to="/register">Register</Link>
+                        <button className="--btn --btn-primary">
+                            <Link to="/register">Register</Link>
+                        </button>
                     </li>
                     </ShowOnLogout>
                     <ShowOnLogout>
@@ -40,23 +43,23 @@ const Home = () => {
                 <div className="hero-text">
                     <h2>Inventory {"&"} Stock Management Solution</h2>
                     <p>
-                        Inventory system to control and manage proucts in the warehouse in
+                        Inventory system to control and manage products in the warehouse in
                         real timeand integrated to make it easier to develop your business.
                     </p>
                     <div className="hero-buttons">
                         <button className="--btn --btn-secondary">
-                            <Link to="/dashboard">Free Trial 1 Month</Link>
+                            Free Trial 1 Month
                         </button>
                     </div>
                     <div className="--flex-start">
-                        <NumberText num="14K" text="Brand Owners" />
-                        <NumberText num="23K" text="Active Users" />
-                        <NumberText num="500+" text="Partners" />
+                        <NumberText num="1K" text="Brand Owners" />
+                        <NumberText num="2K" text="Active Users" />
+                        <NumberText num="100+" text="Partners" />
                     </div>
                 </div>
 
                 <div className="hero-image">
-                    <img src={Img} alt="Inventory" />
+                    <img src={Img1} alt="Inventory" />
                 </div>
             </section>
         </div>
@@ -66,8 +69,8 @@ const Home = () => {
 const NumberText = ({ num, text }) => {
     return (
       <div className="--mr">
-        <h3 className="--color-white">{num}</h3>
-        <p className="--color-white">{text}</p>
+        <h3 className="--color-black">{num}</h3>
+        <p className="--color-black">{text}</p>
       </div>
     );
 };

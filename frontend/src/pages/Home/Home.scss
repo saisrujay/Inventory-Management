@@ -1,29 +1,41 @@
+
 .home {
-    //background-color: #27323A;
-    //background-color: 393053;    
-    background-color: #030b6b;
-    min-height: 100vh;
-  
-    & nav {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-      color: #fff;
-      & > .logo {
-        color: #fff;
-      }
-    }
-  }
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.home nav {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.home nav > .logo {
+  color: #000;
+}
+
   .home-links {
     display: flex;
-    justify-content: center;
+    justify-content: flex;
     align-items: center;
     & li a {
       color: #fff;
     }
     & > * {
-      margin-left: 1rem;
+      margin-left: 2rem;
       color: #fff;
     }
+  }
+  .logo {
+    color: #fff;
+    display: flex; 
+    align-items: center; 
+  }
+  .text{
+    margin-left: 1.5rem;
+    font-size: 3rem;
   }
   
   .hero {
@@ -35,22 +47,53 @@
   .hero-text {
     width: 50%;
     & > * {
-      color: #fff;
+      color: #000;
       margin-bottom: 2rem;
     }
     & > h2 span {
       display: block;
     }
     & .hero-buttons a {
-      color: #fff;
+      color: #000;
     }
   }
   .hero-image {
     width: 50%;
   }
+
+  .--btn-primary {
+    background-color: #145ca8;
+    padding: 8px 20px;
+  }
+  
+  .--btn-secondary {
+    background-color: #145ca8;
+    padding: 12px 24px;
+  }
+  
+  // @media screen and (max-width: 600px) {
+  //   .hero {
+  //     flex-direction: column;
+  //   }
+  //   .hero-text {
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     flex-direction: column;
+  //     width: 100%;
+  //     margin: auto;
+  //     text-align: center;
+  //   }
+  //   .hero-image {
+  //     width: 50%;
+  //     &img {
+  //       width: 100%;
+  //     }
+  //   }
+  // }
   @media screen and (max-width: 600px) {
     .hero {
-      flex-direction: column;
+      flex-direction: column; 
     }
   
     .hero-text {
@@ -62,10 +105,10 @@
       margin: auto;
       text-align: center;
     }
+  
     .hero-image {
-      width: 100%;
-      &img {
-        width: 100%;
-      }
+      width: 100%; 
+      margin-top: 2rem; 
     }
   }
+  
